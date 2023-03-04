@@ -28,121 +28,125 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(about));
-            this.label_name = new System.Windows.Forms.Label();
-            this.label_version = new System.Windows.Forms.Label();
-            this.label_author = new System.Windows.Forms.Label();
-            this.linkLabel_author = new System.Windows.Forms.LinkLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox_description = new System.Windows.Forms.TextBox();
-            this.button_back = new System.Windows.Forms.Button();
-            this.pictureBox_wechat = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_wechat)).BeginInit();
-            this.SuspendLayout();
+            label_name = new Label();
+            label_version = new Label();
+            label_author = new Label();
+            linkLabel_author = new LinkLabel();
+            label1 = new Label();
+            button_back = new Button();
+            pictureBox_wechat = new PictureBox();
+            richTextBox_description = new RichTextBox();
+            toolTip_about = new ToolTip(components);
+            ((System.ComponentModel.ISupportInitialize)pictureBox_wechat).BeginInit();
+            SuspendLayout();
             // 
             // label_name
             // 
-            this.label_name.AutoSize = true;
-            this.label_name.Location = new System.Drawing.Point(14, 12);
-            this.label_name.Name = "label_name";
-            this.label_name.Size = new System.Drawing.Size(291, 20);
-            this.label_name.TabIndex = 0;
-            this.label_name.Text = "Production Name: SNMP Engine ID Format";
+            label_name.AutoSize = true;
+            label_name.Location = new Point(14, 12);
+            label_name.Name = "label_name";
+            label_name.Size = new Size(291, 20);
+            label_name.TabIndex = 0;
+            label_name.Text = "Production Name: SNMP Engine ID Format";
             // 
             // label_version
             // 
-            this.label_version.AutoSize = true;
-            this.label_version.Location = new System.Drawing.Point(14, 47);
-            this.label_version.Name = "label_version";
-            this.label_version.Size = new System.Drawing.Size(72, 20);
-            this.label_version.TabIndex = 1;
-            this.label_version.Text = "Version: 1";
+            label_version.AutoSize = true;
+            label_version.Location = new Point(14, 47);
+            label_version.Name = "label_version";
+            label_version.Size = new Size(72, 20);
+            label_version.TabIndex = 1;
+            label_version.Text = "Version: 2";
             // 
             // label_author
             // 
-            this.label_author.AutoSize = true;
-            this.label_author.Location = new System.Drawing.Point(14, 79);
-            this.label_author.Name = "label_author";
-            this.label_author.Size = new System.Drawing.Size(96, 20);
-            this.label_author.TabIndex = 2;
-            this.label_author.Text = "Copyright @ ";
+            label_author.AutoSize = true;
+            label_author.Location = new Point(14, 79);
+            label_author.Name = "label_author";
+            label_author.Size = new Size(96, 20);
+            label_author.TabIndex = 2;
+            label_author.Text = "Copyright @ ";
             // 
             // linkLabel_author
             // 
-            this.linkLabel_author.AutoSize = true;
-            this.linkLabel_author.Location = new System.Drawing.Point(104, 79);
-            this.linkLabel_author.Name = "linkLabel_author";
-            this.linkLabel_author.Size = new System.Drawing.Size(89, 20);
-            this.linkLabel_author.TabIndex = 3;
-            this.linkLabel_author.TabStop = true;
-            this.linkLabel_author.Text = "Minpu Kang";
-            this.linkLabel_author.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_author_LinkClicked);
+            linkLabel_author.AutoSize = true;
+            linkLabel_author.Location = new Point(104, 79);
+            linkLabel_author.Name = "linkLabel_author";
+            linkLabel_author.Size = new Size(89, 20);
+            linkLabel_author.TabIndex = 3;
+            linkLabel_author.TabStop = true;
+            linkLabel_author.Text = "Minpu Kang";
+            toolTip_about.SetToolTip(linkLabel_author, "To hk314.top");
+            linkLabel_author.LinkClicked += linkLabel_author_LinkClicked;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(14, 113);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(236, 72);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "WeChat Official Account: qiheyehk (Scan QR code to follow\r\nfor bug feedback)";
-            // 
-            // textBox_description
-            // 
-            this.textBox_description.Location = new System.Drawing.Point(14, 189);
-            this.textBox_description.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox_description.Multiline = true;
-            this.textBox_description.Name = "textBox_description";
-            this.textBox_description.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_description.Size = new System.Drawing.Size(362, 266);
-            this.textBox_description.TabIndex = 5;
-            this.textBox_description.Text = resources.GetString("textBox_description.Text");
+            label1.Location = new Point(14, 113);
+            label1.Name = "label1";
+            label1.Size = new Size(333, 72);
+            label1.TabIndex = 4;
+            label1.Text = "WeChat Official Account: qiheyehk (Scan QR code to follow\r\nfor bug feedback)";
             // 
             // button_back
             // 
-            this.button_back.Location = new System.Drawing.Point(292, 463);
-            this.button_back.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button_back.Name = "button_back";
-            this.button_back.Size = new System.Drawing.Size(86, 31);
-            this.button_back.TabIndex = 6;
-            this.button_back.Text = "OK";
-            this.button_back.UseVisualStyleBackColor = true;
-            this.button_back.Click += new System.EventHandler(this.button_back_Click);
+            button_back.Location = new Point(188, 495);
+            button_back.Margin = new Padding(3, 4, 3, 4);
+            button_back.Name = "button_back";
+            button_back.Size = new Size(117, 31);
+            button_back.TabIndex = 6;
+            button_back.Text = "Back to Main";
+            button_back.UseVisualStyleBackColor = true;
+            button_back.Click += button_back_Click;
             // 
             // pictureBox_wechat
             // 
-            this.pictureBox_wechat.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_wechat.ErrorImage")));
-            this.pictureBox_wechat.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_wechat.Image")));
-            this.pictureBox_wechat.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox_wechat.InitialImage")));
-            this.pictureBox_wechat.Location = new System.Drawing.Point(252, 47);
-            this.pictureBox_wechat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pictureBox_wechat.Name = "pictureBox_wechat";
-            this.pictureBox_wechat.Size = new System.Drawing.Size(133, 134);
-            this.pictureBox_wechat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_wechat.TabIndex = 7;
-            this.pictureBox_wechat.TabStop = false;
+            pictureBox_wechat.ErrorImage = (Image)resources.GetObject("pictureBox_wechat.ErrorImage");
+            pictureBox_wechat.Image = (Image)resources.GetObject("pictureBox_wechat.Image");
+            pictureBox_wechat.InitialImage = (Image)resources.GetObject("pictureBox_wechat.InitialImage");
+            pictureBox_wechat.Location = new Point(333, 13);
+            pictureBox_wechat.Margin = new Padding(3, 4, 3, 4);
+            pictureBox_wechat.Name = "pictureBox_wechat";
+            pictureBox_wechat.Size = new Size(162, 169);
+            pictureBox_wechat.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox_wechat.TabIndex = 7;
+            pictureBox_wechat.TabStop = false;
+            toolTip_about.SetToolTip(pictureBox_wechat, "Scan the QR to follow for bug report");
+            // 
+            // richTextBox_description
+            // 
+            richTextBox_description.BackColor = SystemColors.Window;
+            richTextBox_description.BorderStyle = BorderStyle.None;
+            richTextBox_description.Location = new Point(12, 188);
+            richTextBox_description.Name = "richTextBox_description";
+            richTextBox_description.ReadOnly = true;
+            richTextBox_description.Size = new Size(483, 300);
+            richTextBox_description.TabIndex = 8;
+            richTextBox_description.Text = resources.GetString("richTextBox_description.Text");
+            richTextBox_description.LinkClicked += richTextBox_description_LinkClicked;
             // 
             // about
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 507);
-            this.Controls.Add(this.pictureBox_wechat);
-            this.Controls.Add(this.button_back);
-            this.Controls.Add(this.textBox_description);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.linkLabel_author);
-            this.Controls.Add(this.label_author);
-            this.Controls.Add(this.label_version);
-            this.Controls.Add(this.label_name);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.Name = "about";
-            this.Text = "About";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_wechat)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(507, 533);
+            Controls.Add(richTextBox_description);
+            Controls.Add(pictureBox_wechat);
+            Controls.Add(button_back);
+            Controls.Add(label1);
+            Controls.Add(linkLabel_author);
+            Controls.Add(label_author);
+            Controls.Add(label_version);
+            Controls.Add(label_name);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            Name = "about";
+            Text = "About";
+            ((System.ComponentModel.ISupportInitialize)pictureBox_wechat).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -152,8 +156,9 @@
         private Label label_author;
         private LinkLabel linkLabel_author;
         private Label label1;
-        private TextBox textBox_description;
         private Button button_back;
         private PictureBox pictureBox_wechat;
+        private RichTextBox richTextBox_description;
+        private ToolTip toolTip_about;
     }
 }

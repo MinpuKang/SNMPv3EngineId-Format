@@ -57,19 +57,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox_description.Text" xml:space="preserve">
-    <value>This is a software baed on .net6.0.
-It is used to generate SNMP Engine ID based on RFC3411.
-
-How to use:
-- Fill three parameters:
-- 1. Private Enterpice Number assigned by IANA(https://www.iana.org/assignments/enterprise-numbers)
-- 2. Select Engine ID Data Format: 1 for IPv4(only support in this version )
-- 3. Fill the Engine ID Data base on the format.
-
-Version 1(2023-02-20)
-- First Version</value>
-  </data>
+  <metadata name="toolTip_about.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox_wechat.ErrorImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -20574,6 +20564,27 @@ Version 1(2023-02-20)
         McaMBBbAxhhjjDHGGGNGAgtgY4wxxhhjjDEjgQWwMcYYY4wxxpiRwALYGGOMMcYYY8xIYAFsjDHGGGOM
         MWYksAA2xhhjjDHGGDMSWAAbY4wxxhhjjBkJLICNMcYYY4wxxowEFsDGGGOMMcYYY0aA//u//w+phc+x
         K5qRCAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="richTextBox_description.Text" xml:space="preserve">
+    <value>This is a software based on .NET 6.0.
+It is used to generate SNMP Engine ID based on RFC3411(https://www.rfc-editor.org/rfc/rfc3411.html).
+
+How to use:
+- Fill three parameters:
+- 1. Private Enterprise Number(0-99999) assigned by IANA(https://www.iana.org/assignments/enterprise-numbers)
+- 2. Select Engine ID Data Format.
+- 3. Fill the Engine ID Data base on the format.
+
+Version 1(2023-02-20)
+- First Version
+
+Version 2(2023-03-04)
+- Fix typo
+- Update EngineID data format to support IPv6, MAC and Text assigned by admin.
+- Add PEN range(0-99999) check.
+- Update about with hyperlink for RFC and IANA link
+- Add decode function for decoding an engineID
 </value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

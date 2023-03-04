@@ -28,185 +28,191 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
-            this.label_version = new System.Windows.Forms.Label();
-            this.textBox_version = new System.Windows.Forms.TextBox();
-            this.menuStrip_main = new System.Windows.Forms.MenuStrip();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label_pen = new System.Windows.Forms.Label();
-            this.textBox_pen = new System.Windows.Forms.TextBox();
-            this.label_engineIDFormat = new System.Windows.Forms.Label();
-            this.textBox_engineIDData = new System.Windows.Forms.TextBox();
-            this.label_engineIDData = new System.Windows.Forms.Label();
-            this.textBox_engineIDresult = new System.Windows.Forms.TextBox();
-            this.label_engineIDresult = new System.Windows.Forms.Label();
-            this.comboBox_engineIDFormat = new System.Windows.Forms.ComboBox();
-            this.toolTip_main = new System.Windows.Forms.ToolTip(this.components);
-            this.linkLabel_iana = new System.Windows.Forms.LinkLabel();
-            this.menuStrip_main.SuspendLayout();
-            this.SuspendLayout();
+            label_version = new Label();
+            textBox_version = new TextBox();
+            menuStrip_main = new MenuStrip();
+            aboutToolStripMenuItem = new ToolStripMenuItem();
+            decodeToolStripMenuItem = new ToolStripMenuItem();
+            label_pen = new Label();
+            textBox_pen = new TextBox();
+            label_engineIDFormat = new Label();
+            textBox_engineIDData = new TextBox();
+            label_engineIDData = new Label();
+            textBox_engineIDresult = new TextBox();
+            label_engineIDresult = new Label();
+            comboBox_engineIDFormat = new ComboBox();
+            toolTip_main = new ToolTip(components);
+            linkLabel_iana = new LinkLabel();
+            menuStrip_main.SuspendLayout();
+            SuspendLayout();
             // 
             // label_version
             // 
-            this.label_version.AutoSize = true;
-            this.label_version.Location = new System.Drawing.Point(10, 16);
-            this.label_version.Name = "label_version";
-            this.label_version.Size = new System.Drawing.Size(81, 15);
-            this.label_version.TabIndex = 0;
-            this.label_version.Text = "SNMP Version";
+            label_version.AutoSize = true;
+            label_version.Location = new Point(11, 21);
+            label_version.Name = "label_version";
+            label_version.Size = new Size(101, 20);
+            label_version.TabIndex = 0;
+            label_version.Text = "SNMP Version";
             // 
             // textBox_version
             // 
-            this.textBox_version.Location = new System.Drawing.Point(10, 33);
-            this.textBox_version.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox_version.Name = "textBox_version";
-            this.textBox_version.ReadOnly = true;
-            this.textBox_version.Size = new System.Drawing.Size(89, 23);
-            this.textBox_version.TabIndex = 10;
-            this.textBox_version.Text = "v3";
+            textBox_version.Location = new Point(11, 44);
+            textBox_version.Name = "textBox_version";
+            textBox_version.ReadOnly = true;
+            textBox_version.Size = new Size(101, 27);
+            textBox_version.TabIndex = 10;
+            textBox_version.Text = "v3";
+            toolTip_main.SetToolTip(textBox_version, "Fixed SNMP version to v3");
             // 
             // menuStrip_main
             // 
-            this.menuStrip_main.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.menuStrip_main.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip_main.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip_main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.menuStrip_main.Location = new System.Drawing.Point(466, 0);
-            this.menuStrip_main.Name = "menuStrip_main";
-            this.menuStrip_main.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip_main.Size = new System.Drawing.Size(59, 24);
-            this.menuStrip_main.TabIndex = 2;
-            this.menuStrip_main.Text = "menuStrip_main";
+            menuStrip_main.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            menuStrip_main.Dock = DockStyle.None;
+            menuStrip_main.ImageScalingSize = new Size(20, 20);
+            menuStrip_main.Items.AddRange(new ToolStripItem[] { aboutToolStripMenuItem, decodeToolStripMenuItem });
+            menuStrip_main.Location = new Point(303, 0);
+            menuStrip_main.Name = "menuStrip_main";
+            menuStrip_main.Padding = new Padding(6, 3, 0, 3);
+            menuStrip_main.Size = new Size(297, 30);
+            menuStrip_main.TabIndex = 2;
+            menuStrip_main.Text = "menuStrip_main";
             // 
             // aboutToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            aboutToolStripMenuItem.Size = new Size(64, 24);
+            aboutToolStripMenuItem.Text = "About";
+            aboutToolStripMenuItem.ToolTipText = "To about forms";
+            aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
+            // 
+            // decodeToolStripMenuItem
+            // 
+            decodeToolStripMenuItem.Name = "decodeToolStripMenuItem";
+            decodeToolStripMenuItem.Size = new Size(75, 24);
+            decodeToolStripMenuItem.Text = "Decode";
+            decodeToolStripMenuItem.ToolTipText = "To decode a snmpEngineID in SNMPv3";
+            decodeToolStripMenuItem.Click += decodeToolStripMenuItem_Click;
             // 
             // label_pen
             // 
-            this.label_pen.AutoSize = true;
-            this.label_pen.Location = new System.Drawing.Point(116, 16);
-            this.label_pen.Name = "label_pen";
-            this.label_pen.Size = new System.Drawing.Size(121, 15);
-            this.label_pen.TabIndex = 3;
-            this.label_pen.Text = "Private Enterprice No.";
+            label_pen.AutoSize = true;
+            label_pen.Location = new Point(133, 21);
+            label_pen.Name = "label_pen";
+            label_pen.Size = new Size(151, 20);
+            label_pen.TabIndex = 3;
+            label_pen.Text = "Private Enterprise No.";
             // 
             // textBox_pen
             // 
-            this.textBox_pen.Location = new System.Drawing.Point(116, 33);
-            this.textBox_pen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox_pen.Name = "textBox_pen";
-            this.textBox_pen.Size = new System.Drawing.Size(64, 23);
-            this.textBox_pen.TabIndex = 4;
-            this.toolTip_main.SetToolTip(this.textBox_pen, "The private enterprise number as assigned by IANA(https://www.iana.org/assignment" +
-        "s/enterprise-numbers/)");
-            this.textBox_pen.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_pen_KeyUp);
+            textBox_pen.Location = new Point(133, 44);
+            textBox_pen.Name = "textBox_pen";
+            textBox_pen.Size = new Size(73, 27);
+            textBox_pen.TabIndex = 4;
+            toolTip_main.SetToolTip(textBox_pen, "The private enterprise number as assigned by IANA(https://www.iana.org/assignments/enterprise-numbers/)");
+            textBox_pen.KeyUp += textBox_pen_KeyUp;
             // 
             // label_engineIDFormat
             // 
-            this.label_engineIDFormat.AutoSize = true;
-            this.label_engineIDFormat.Location = new System.Drawing.Point(264, 16);
-            this.label_engineIDFormat.Name = "label_engineIDFormat";
-            this.label_engineIDFormat.Size = new System.Drawing.Size(98, 15);
-            this.label_engineIDFormat.TabIndex = 5;
-            this.label_engineIDFormat.Text = "Engine ID Format";
+            label_engineIDFormat.AutoSize = true;
+            label_engineIDFormat.Location = new Point(302, 21);
+            label_engineIDFormat.Name = "label_engineIDFormat";
+            label_engineIDFormat.Size = new Size(124, 20);
+            label_engineIDFormat.TabIndex = 5;
+            label_engineIDFormat.Text = "Engine ID Format";
             // 
             // textBox_engineIDData
             // 
-            this.textBox_engineIDData.Location = new System.Drawing.Point(10, 83);
-            this.textBox_engineIDData.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox_engineIDData.Multiline = true;
-            this.textBox_engineIDData.Name = "textBox_engineIDData";
-            this.textBox_engineIDData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_engineIDData.Size = new System.Drawing.Size(152, 130);
-            this.textBox_engineIDData.TabIndex = 1;
-            this.textBox_engineIDData.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_engineIDData_KeyUp);
+            textBox_engineIDData.Location = new Point(11, 111);
+            textBox_engineIDData.Multiline = true;
+            textBox_engineIDData.Name = "textBox_engineIDData";
+            textBox_engineIDData.ScrollBars = ScrollBars.Both;
+            textBox_engineIDData.Size = new Size(173, 172);
+            textBox_engineIDData.TabIndex = 1;
+            toolTip_main.SetToolTip(textBox_engineIDData, "Fill the engineID Data based on the Format selected");
+            textBox_engineIDData.KeyUp += textBox_engineIDData_KeyUp;
             // 
             // label_engineIDData
             // 
-            this.label_engineIDData.AutoSize = true;
-            this.label_engineIDData.Location = new System.Drawing.Point(10, 66);
-            this.label_engineIDData.Name = "label_engineIDData";
-            this.label_engineIDData.Size = new System.Drawing.Size(84, 15);
-            this.label_engineIDData.TabIndex = 7;
-            this.label_engineIDData.Text = "Engine ID Data";
+            label_engineIDData.AutoSize = true;
+            label_engineIDData.Location = new Point(11, 88);
+            label_engineIDData.Name = "label_engineIDData";
+            label_engineIDData.Size = new Size(109, 20);
+            label_engineIDData.TabIndex = 7;
+            label_engineIDData.Text = "Engine ID Data";
             // 
             // textBox_engineIDresult
             // 
-            this.textBox_engineIDresult.Location = new System.Drawing.Point(180, 83);
-            this.textBox_engineIDresult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox_engineIDresult.Multiline = true;
-            this.textBox_engineIDresult.Name = "textBox_engineIDresult";
-            this.textBox_engineIDresult.ReadOnly = true;
-            this.textBox_engineIDresult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_engineIDresult.Size = new System.Drawing.Size(334, 130);
-            this.textBox_engineIDresult.TabIndex = 8;
+            textBox_engineIDresult.Location = new Point(206, 111);
+            textBox_engineIDresult.Multiline = true;
+            textBox_engineIDresult.Name = "textBox_engineIDresult";
+            textBox_engineIDresult.ReadOnly = true;
+            textBox_engineIDresult.ScrollBars = ScrollBars.Both;
+            textBox_engineIDresult.Size = new Size(381, 172);
+            textBox_engineIDresult.TabIndex = 8;
             // 
             // label_engineIDresult
             // 
-            this.label_engineIDresult.AutoSize = true;
-            this.label_engineIDresult.Location = new System.Drawing.Point(180, 66);
-            this.label_engineIDresult.Name = "label_engineIDresult";
-            this.label_engineIDresult.Size = new System.Drawing.Size(92, 15);
-            this.label_engineIDresult.TabIndex = 9;
-            this.label_engineIDresult.Text = "Engine ID Result";
+            label_engineIDresult.AutoSize = true;
+            label_engineIDresult.Location = new Point(206, 88);
+            label_engineIDresult.Name = "label_engineIDresult";
+            label_engineIDresult.Size = new Size(117, 20);
+            label_engineIDresult.TabIndex = 9;
+            label_engineIDresult.Text = "Engine ID Result";
             // 
             // comboBox_engineIDFormat
             // 
-            this.comboBox_engineIDFormat.FormattingEnabled = true;
-            this.comboBox_engineIDFormat.Items.AddRange(new object[] {
-            "1(IPv4 for Engine ID Data)"});
-            this.comboBox_engineIDFormat.Location = new System.Drawing.Point(264, 34);
-            this.comboBox_engineIDFormat.Name = "comboBox_engineIDFormat";
-            this.comboBox_engineIDFormat.Size = new System.Drawing.Size(191, 23);
-            this.comboBox_engineIDFormat.TabIndex = 6;
-            this.comboBox_engineIDFormat.SelectedIndexChanged += new System.EventHandler(this.comboBox_engineIDFormat_SelectedIndexChanged);
+            comboBox_engineIDFormat.FormattingEnabled = true;
+            comboBox_engineIDFormat.Items.AddRange(new object[] { "1(IPv4 for Engine ID Data)", "2(IPv6 for Engine ID Data)", "3(MAC for Engine ID Data)", "4(Text, admin assigned with max length 27)" });
+            comboBox_engineIDFormat.Location = new Point(302, 45);
+            comboBox_engineIDFormat.Margin = new Padding(3, 4, 3, 4);
+            comboBox_engineIDFormat.Name = "comboBox_engineIDFormat";
+            comboBox_engineIDFormat.Size = new Size(285, 28);
+            comboBox_engineIDFormat.TabIndex = 6;
+            toolTip_main.SetToolTip(comboBox_engineIDFormat, "Select the engineID format");
+            comboBox_engineIDFormat.SelectedIndexChanged += comboBox_engineIDFormat_SelectedIndexChanged;
             // 
             // linkLabel_iana
             // 
-            this.linkLabel_iana.AutoSize = true;
-            this.linkLabel_iana.Location = new System.Drawing.Point(181, 40);
-            this.linkLabel_iana.Name = "linkLabel_iana";
-            this.linkLabel_iana.Size = new System.Drawing.Size(60, 15);
-            this.linkLabel_iana.TabIndex = 11;
-            this.linkLabel_iana.TabStop = true;
-            this.linkLabel_iana.Text = "IANA PEN";
-            this.linkLabel_iana.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_iana_LinkClicked);
+            linkLabel_iana.AutoSize = true;
+            linkLabel_iana.Location = new Point(207, 53);
+            linkLabel_iana.Name = "linkLabel_iana";
+            linkLabel_iana.Size = new Size(75, 20);
+            linkLabel_iana.TabIndex = 11;
+            linkLabel_iana.TabStop = true;
+            linkLabel_iana.Text = "IANA PEN";
+            toolTip_main.SetToolTip(linkLabel_iana, "To IANA Web(https://www.iana.org/assignments/enterprise-numbers)");
+            linkLabel_iana.LinkClicked += linkLabel_iana_LinkClicked;
             // 
             // main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 223);
-            this.Controls.Add(this.linkLabel_iana);
-            this.Controls.Add(this.comboBox_engineIDFormat);
-            this.Controls.Add(this.textBox_engineIDresult);
-            this.Controls.Add(this.label_engineIDresult);
-            this.Controls.Add(this.textBox_engineIDData);
-            this.Controls.Add(this.label_engineIDData);
-            this.Controls.Add(this.label_engineIDFormat);
-            this.Controls.Add(this.textBox_pen);
-            this.Controls.Add(this.label_pen);
-            this.Controls.Add(this.textBox_version);
-            this.Controls.Add(this.label_version);
-            this.Controls.Add(this.menuStrip_main);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip_main;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MaximizeBox = false;
-            this.Name = "main";
-            this.Text = "SeiFor - SnmpEngineId Format";
-            this.menuStrip_main.ResumeLayout(false);
-            this.menuStrip_main.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(601, 297);
+            Controls.Add(linkLabel_iana);
+            Controls.Add(comboBox_engineIDFormat);
+            Controls.Add(textBox_engineIDresult);
+            Controls.Add(label_engineIDresult);
+            Controls.Add(textBox_engineIDData);
+            Controls.Add(label_engineIDData);
+            Controls.Add(label_engineIDFormat);
+            Controls.Add(textBox_pen);
+            Controls.Add(label_pen);
+            Controls.Add(textBox_version);
+            Controls.Add(label_version);
+            Controls.Add(menuStrip_main);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MainMenuStrip = menuStrip_main;
+            MaximizeBox = false;
+            Name = "main";
+            Text = "SeiFor - SnmpEngineId Format";
+            menuStrip_main.ResumeLayout(false);
+            menuStrip_main.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -225,5 +231,6 @@
         private ComboBox comboBox_engineIDFormat;
         private ToolTip toolTip_main;
         private LinkLabel linkLabel_iana;
+        private ToolStripMenuItem decodeToolStripMenuItem;
     }
 }

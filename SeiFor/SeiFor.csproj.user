@@ -4,6 +4,9 @@
     <Compile Update="about.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="decodeEngineId.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="main.cs">
       <SubType>Form</SubType>
     </Compile>
