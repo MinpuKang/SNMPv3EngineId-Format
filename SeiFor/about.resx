@@ -20566,6 +20566,9 @@
         K5qRCAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="toolTip_about.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="richTextBox_description.Text" xml:space="preserve">
     <value>This is a software based on .NET 6.0.
 It is used to generate SNMP Engine ID based on RFC3411(https://www.rfc-editor.org/rfc/rfc3411.html).
@@ -20585,6 +20588,10 @@ Version 2(2023-03-04)
 - Add PEN range(0-99999) check.
 - Update about with hyperlink for RFC and IANA link
 - Add decode function for decoding an engineID
+
+Version 2.1(2023-03-13)
+- Optimize decode funtion and get the organization based on pen from IANA web.
+- The decoded result in one page and can be saved.
 </value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

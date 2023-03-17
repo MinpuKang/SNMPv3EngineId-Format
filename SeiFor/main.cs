@@ -1,8 +1,5 @@
-﻿using System.Configuration;
-using System.Diagnostics;
-using System.Drawing;
+﻿using System.Diagnostics;
 using System.Net;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Text.RegularExpressions;
 

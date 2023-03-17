@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+﻿using System.Data;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Diagnostics;
+using System.Net.Sockets;
 
 namespace SeiFor
 {
@@ -36,6 +30,20 @@ namespace SeiFor
             }
         }
 
+        static string internet_check(string hostname, int port)
+        {
+            try
+            {
+                Socket socket = new(SocketType.Stream, ProtocolType.Tcp);
+                socket.Connect(hostname, port);
+                string result = socket.Connected.ToString();
+                return result;
+            }
+            catch (SocketException e)
+            {
+                return e.ToString();
+            }
+        }
         static bool is_ipv4(string ip_v4)
         {
             //Regex reg = new Regex(@"(?n)^\s*(([1-9]?[0-9]|1[0-9]{2}|2([0-4][0-9]|5[0-5]))\.){3}([1-9]?[0-9]|1[0-9]{2}|2([0-4][0-9]|5[0-5]))\s*$");
@@ -92,14 +100,56 @@ namespace SeiFor
             return byteArray;
         }
 
-        private void textBox_engineid_KeyUp(object sender, KeyEventArgs e)
+        private void save_result(string result, SaveFileDialog saveFileDialog_result)
         {
-            textBox_dataformat.Text = "";
-            textBox_conformance.Text = "";
-            textBox_pen.Text = "";
-            textBox_engineIDData.Text = "";
+            if (result != "")
+            {
+                //设置保存文件的格式
+                saveFileDialog_result.Filter = "All files (*.*)|*.*|Normal txt files (*.txt)|*.txt";
+                //设置默认文件类型显示顺序  
+                saveFileDialog_result.FilterIndex = 2;
+                //保存对话框是否记忆上次打开的目录  
+                saveFileDialog_result.RestoreDirectory = true;
+                saveFileDialog_result.FileName = DateTime.Now.ToString("yyyyMMddhhmmss") + "_" + textBox_engineid.Text + "_decodeResult.txt";
+                if (saveFileDialog_result.ShowDialog() == DialogResult.OK)
+                {
+                    //使用“另存为”对话框中输入的文件名实例化StreamWriter对象
+                    StreamWriter sw = new(saveFileDialog_result.FileName, true);
+                    //向创建的文件中写入内容
+                    sw.WriteLine(textBox_result.Text);
+                    //关闭当前文件写入流
+                    sw.Close();
+                    //获得文件路径
+                    string savedFilePath = saveFileDialog_result.FileName.ToString();
+                    if (MessageBox.Show("Config saved as: " + savedFilePath + "\r\n\r\nOpen or not?", "Decode Result", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        //if (checkNodepadplus() == true)
+                        //{
+                        //    MessageBox.Show("Installed");
+                        //    System.Diagnostics.Process.Start("notepad++.exe", savedFilePath);
+                        //}
+                        //else
+                        //{
+                        System.Diagnostics.Process.Start("notepad.exe", savedFilePath);
+                        //}
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No Result is decoded!", "Decode Result");
+            }
+        }
+
+        private async void textBox_engineid_KeyUp(object sender, KeyEventArgs e)
+        {
+            string version = "";
+            string pen_organization = "";
+            string dataformat = "";
+            string engineIdData = "";
 
             string engineid = textBox_engineid.Text.Trim();
+
             if (engineid != "" && (engineid.Length >= 10 && engineid.Length <= 64) && (Regex.IsMatch(engineid, "^[a-fA-F0-9]{0,}$")))
             {
                 //string extracted = s[startIndex..(endIndex + 1)];
@@ -111,21 +161,35 @@ namespace SeiFor
 
                 if (bin_pen[0..1] == "1") //get the first letter
                 {
-                    textBox_conformance.Text = "RFC3411(SNMPv3)";
+                    version = "Engine ID Conformance: RFC3411(SNMPv3)";
 
                     string replaced_bin_pen = bin_pen.Remove(0, 1).Insert(0, "0");
                     string pen = Convert.ToInt32(replaced_bin_pen, 2).ToString();
 
-                    textBox_pen.Text = pen;
+                    string is_internet_connected = internet_check("8.8.8.8", 53);
+                    if (is_internet_connected == "True")
+                    {
+                        string iana_url_pen = "http://www.iana.org/assignments/enterprise-numbers/?q=" + pen;
+                        HttpClient client = new();
+                        client.DefaultRequestHeaders.Add("User-Agent", "SeiFor");
+                        HttpResponseMessage response = await client.GetAsync(iana_url_pen);
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        string[] responseBody_arr = responseBody.Split("\n");
+                        pen_organization = responseBody_arr[178].Trim() + " (" + pen + ")";
+                    }
+                    else
+                    {
+                        //linkLabel_iana.Visible = true;
+                        pen_organization = pen;
+                    }
 
-                    string dataformat = Convert.ToInt32(hex_dataformat, 16).ToString();
+                    dataformat = Convert.ToInt32(hex_dataformat, 16).ToString();
 
-                    textBox_dataformat.Text = dataformat;
 
                     switch (dataformat)
                     {
                         case "1": //for IPv4 format
-                            textBox_dataformat.Text = "1 - IPv4 address";
+                            dataformat = "1 - IPv4 address";
                             if (hex_engineiddata.Length == 8)
                             {
                                 string ipv4Address = "";
@@ -145,20 +209,20 @@ namespace SeiFor
                                 }
                                 if (is_ipv4(ipv4Address))
                                 {
-                                    textBox_engineIDData.Text = ipv4Address;
+                                    engineIdData = ipv4Address;
                                 }
                                 else
                                 {
-                                    textBox_engineIDData.Text = "Format is IPv4, but data is not a validated IPv4!";
+                                    engineIdData = "Format is IPv4, but data is not a validated IPv4!";
                                 }
                             }
                             else
                             {
-                                textBox_engineIDData.Text = "Format is IPv4, but data is not a validated IPv4!";
+                                engineIdData = "Format is IPv4, but data is not a validated IPv4!";
                             }
                             break;
                         case "2": //for IPv6 format
-                            textBox_dataformat.Text = "2 - IPv6 address";
+                            dataformat = "2 - IPv6 address";
                             if (hex_engineiddata.Length == 32)
                             {
                                 string ipv6Address = "";
@@ -178,20 +242,20 @@ namespace SeiFor
                                 }
                                 if (is_ipv6(ipv6Address))
                                 {
-                                    textBox_engineIDData.Text = IPAddress.Parse(ipv6Address).ToString();
+                                    engineIdData = IPAddress.Parse(ipv6Address).ToString();
                                 }
                                 else
                                 {
-                                    textBox_engineIDData.Text = "Format is IPv6, but data is not a validated IPv6!";
+                                    engineIdData = "Format is IPv6, but data is not a validated IPv6!";
                                 }
                             }
                             else
                             {
-                                textBox_engineIDData.Text = "Format is IPv6, but data is not a validated IPv6!";
+                                engineIdData = "Format is IPv6, but data is not a validated IPv6!";
                             }
                             break;
                         case "3":  //for MAC format
-                            textBox_dataformat.Text = "3 - MAC address";
+                            dataformat = "3 - MAC address";
                             if (hex_engineiddata.Length == 12)
                             {
                                 string macAddress = "";
@@ -211,58 +275,47 @@ namespace SeiFor
                                 }
                                 if (is_mac_addr(macAddress))
                                 {
-                                    textBox_engineIDData.Text = macAddress;
+                                    engineIdData = macAddress;
                                 }
                                 else
                                 {
-                                    textBox_engineIDData.Text = "Format is MAC, but data is not a validated MAC!";
+                                    engineIdData = "Format is MAC, but data is not a validated MAC!";
                                 }
                             }
                             else
                             {
-                                textBox_engineIDData.Text = "Format is MAC, but data is not a validated MAC!";
+                                engineIdData = "Format is MAC, but data is not a validated MAC!";
                             }
                             break;
                         case "4":  //for Text, administratively assigned Maximum remaining length 27
-                            textBox_dataformat.Text = "4 - Text, administratively assigned";
+                            dataformat = "4 - Text, administratively assigned";
                             byte[] hexBytes = HexStringToByteArray(hex_engineiddata); // convert the hexadecimal string to a byte array
                             string textdecodedString = Encoding.UTF8.GetString(hexBytes); // decode the byte array into a string using UTF8 encoding
-                            textBox_engineIDData.Text = textdecodedString;
+                            engineIdData = textdecodedString;
                             break;
                         default:
-                            textBox_dataformat.Text = dataformat + " as format is not in ofen used!";
-                            textBox_engineIDData.Text = hex_engineiddata;
+                            dataformat += " as format is not in ofen used!";
+                            engineIdData = hex_engineiddata;
                             break;
                     }
+
+                    textBox_result.Text = "EngineID: " + engineid + "\r\nDecoded As Below: \r\n" + "    " + version + "\r\n" + "    Engine Enterprise ID: " + pen_organization + "\r\n" + "    Engine ID Format: " + dataformat + "\r\n" + "    Engine ID Data: " + engineIdData;
+
                 }
                 else
                 {
-                    textBox_conformance.Text = "Note: engineID is not for SNMPv3";
+                    textBox_result.Text = "Note: engineID is not for SNMPv3";
                 }
             }
             else
             {
-                textBox_engineIDData.Text = "Note: engineID is not correct, hexadecimal required and length is from 10 to 64!";
+                textBox_result.Text = "Note: engineID is not correct, hexadecimal required and length is from 10 to 64!";
             }
         }
 
-        private void linkLabel_iana_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void button_save_Click(object sender, EventArgs e)
         {
-            if (textBox_pen.Text != "")
-            {
-                var enterpriseNumber = textBox_pen.Text;
-
-                // construct the search URL
-                var searchUrl = "https://www.iana.org/assignments/enterprise-numbers/";
-                searchUrl += "?q=" + enterpriseNumber;
-
-                // open the search URL in the default web browser
-                Process.Start(new ProcessStartInfo(searchUrl) { UseShellExecute = true });
-            }
-            else
-            {
-                Process.Start(new ProcessStartInfo("https://www.iana.org/assignments/enterprise-numbers/") { UseShellExecute = true });
-            }
+            save_result(textBox_result.Text, saveFileDialog_result);
         }
     }
 }

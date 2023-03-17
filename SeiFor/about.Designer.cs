@@ -56,9 +56,9 @@
             label_version.AutoSize = true;
             label_version.Location = new Point(14, 47);
             label_version.Name = "label_version";
-            label_version.Size = new Size(72, 20);
+            label_version.Size = new Size(83, 20);
             label_version.TabIndex = 1;
-            label_version.Text = "Version: 2";
+            label_version.Text = "Version: 2.1";
             // 
             // label_author
             // 
